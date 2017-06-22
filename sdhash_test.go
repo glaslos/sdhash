@@ -13,7 +13,10 @@ var (
 
 func TestHash(t *testing.T) {
 	for _, tc := range testCases {
-		hash := Hash(tc.filename)
+		hash, err := Hash(tc.filename)
+		if err != nil {
+			t.Error(err)
+		}
 		if hash != tc.hash {
 			t.Log(tc.hash)
 			t.Error(hash)
